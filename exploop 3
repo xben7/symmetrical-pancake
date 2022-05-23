@@ -1,0 +1,19 @@
+            try:
+                certexpdate = response_dict["sites"][i]['ssl']['custom_certificate']['expirationDate']
+                accountname=getAccountName(response_dict["sites"][i]["account_id"])
+                cert = response_dict["sites"][i]['ssl']['custom_certificate']['active']
+                if response_dict["sites"][i]['ssl']['generated_certificate']['ca'] == 'GS':
+                    certgenerated = "generado"
+                    print(response_dict["sites"][i]["domain"] + "," + str(accountname) + "," + datetime.datetime.fromtimestamp(int(certexpdate / 1000)).strftime('%d/%m/%Y %H:%M:%S') + "," + (certgenerated))
+                else:
+                    print(response_dict["sites"][i]["domain"] + "," + str(accountname) + "," + datetime.datetime.fromtimestamp(int(certexpdate / 1000)).strftime('%d/%m/%Y %H:%M:%S') + "," +"hola mundo")
+                try:
+                    if cert == 'True':
+                        print(response_dict["sites"][i]["domain"] + "," + str(accountname) + "," + datetime.datetime.fromtimestamp(int(certexpdate / 1000)).strftime('%d/%m/%Y %H:%M:%S') + "," + (certgenerated))
+                    else:
+                    print(response_dict["sites"][i]["domain"] + "," + str(accountname) + "," + datetime.datetime.fromtimestamp(int(certexpdate / 1000)).strftime('%d/%m/%Y %H:%M:%S') + "," +"hola mundo2")
+                except:
+                    print("certificado False")
+
+            except: 
+                print(response_dict["sites"][i]["domain"] + "," + str(accountname) + ", No cert")
