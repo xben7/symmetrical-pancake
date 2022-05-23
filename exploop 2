@@ -10,6 +10,8 @@
             except: 
                 continue
             try:
+                certexpdate = response_dict["sites"][i]['ssl']['custom_certificate']['expirationDate']
+                accountname=getAccountName(response_dict["sites"][i]["account_id"])
                 cert = response_dict["sites"][i]['ssl']['custom_certificate']['active']
                 if (str(cert) == 'True'):
                     certgenerated = "generado"
